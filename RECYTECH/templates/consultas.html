@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultas</title>
+    <style>
+        body { 
+            font-family: Monotype Corsiva; 
+            background-color: rgba(96, 237, 106, 0.763);
+            padding: 20px;
+            text-align: center; 
+        }
+
+        .container {
+            background: rgba(176, 249, 172, 0.581);
+            padding: 20px;
+            border-radius: 8px;
+            width: 650px;
+            margin: auto;
+            box-shadow: 0px 0px 0px #66e666;
+            text-align: center; 
+        }
+
+        a { color: black; font-size: 2em; }
+
+        h2 {
+            font-family: Monotype Corsiva; 
+            color: black;
+            font-size: 3.5em; 
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 3em; 
+            color: black;
+        }
+
+        form {
+            width: 100%;
+            text-align: center; 
+        }
+
+        label, select, input {
+            display: block;
+            width: 90%;
+            margin: 10px auto; 
+            font-size: 1.5em;
+        }
+
+        button {
+            padding: 15px 20px;
+            font-size: 30px;
+            background-color: rgb(114, 246, 134);
+            color: rgb(23, 22, 22);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            font-family: Monotype Corsiva; 
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid rgba(105, 224, 111, 0.77);
+        }
+
+        th {
+            background-color: rgb(77, 236, 125);
+            color: rgb(26, 25, 25);
+        }
+
+        td, th {
+            padding: 8px;
+            text-align: left;
+            border: 2px solid #28ce54;
+            font-size: 2em;
+        }
+
+        .mensaje {
+            margin-top: 15px;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .volver {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        .volver a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Consultas Avanzadas de Residuos</h2>
+
+    <form action="/consultas" method="POST">
+
+        <label for="criterio">Selecciona un criterio de búsqueda:</label>
+        <select name="criterio" id="criterio" required>
+            <option value="">-- Selecciona por tipo --</option>
+            <option value="tipo">Buscar por tipo</option>
+            <option value="color">Buscar por color</option>
+            <option value="ejemplos">Buscar por ejemplos</option>
+        </select>
+
+        <label>Ingresa el valor para la búsqueda (si aplica):</label>
+        <input type="text" name="valor" placeholder="Ejemplo: botella, papel, tóxico, etc.">
+
+        <button type="submit">Consultar</button>
+    </form>
+
+    {% if mensaje_consulta %}
+        <p class="mensaje">{{ mensaje_consulta }}</p>
+    {% endif %}
+
+    {% if resultados %}
+        <h3>Resultados:</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Color</th>
+                <th>Ejemplos</th>
+            </tr>
+            {% for r in resultados %}
+            <tr>
+                <td>{{ r.id }}</td>
+                <td>{{ r.tipo }}</td>
+                <td>{{ r.color }}</td>
+                <td>{{ r.ejemplos }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <div>
+        <a href="/menu" class="volver">Regresar</a>
+    </div>
+
+</div>
+
+</body>
+</html>

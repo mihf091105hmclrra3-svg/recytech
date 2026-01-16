@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sopa de Letras - Reciclaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8bee9406;
+            text-align: center;
+        }
+
+        h1 {
+            color: #131313;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #333;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        td.selected {
+            background-color: #6be872;
+        }
+
+        #palabras {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+        }
+        
+        a {
+            color: black;
+            font-size: 1em;
+            
+        }
+        
+    </style>
+</head>
+<body>
+
+<h1>Reciclaje</h1>
+
+<table id="sopa"></table>
+
+<h3>Palabras a encontrar:</h3>
+<ul id="lista-palabras">
+    <li>RECICLAR</li>
+    <li>REDUCIR</li>
+    <li>REUTILIZAR</li>
+    <li>PLASTICO</li>
+    <li>PAPEL</li>
+    <li>VIDRIO</li> 
+    <li>RECYTECH</li>
+</ul>
+
+<ul>
+<button onclick="verificar()">Verificar</button>
+</ul>
+
+<script>
+    const palabras = ["RECICLAR", "REDUCIR", "REUTILIZAR", "PLASTICO", "PAPEL", "VIDRIO", "RECYTECH"];
+    let seleccionadas = [];
+
+    const letras = [
+        ["R","E","C","I","C","L","A","R","P","Y"],
+        ["P","L","A","S","T","I","C","O","L","H"],
+        ["R","E","D","U","C","I","R","X","T","U"],
+        ["V","I","D","R","I","O","Y","Z","E","H"],
+        ["P","A","P","E","L","M","N","O","G","A"],
+        ["R","E","U","T","I","L","I","Z","A","R"],
+        ["A","B","C","D","E","F","G","H","U","Ñ"],
+        ["Q","W","E","R","T","Y","U","I","N","L"],
+        ["R","E","C","Y","T","E","C","H","L","A"]
+    ];
+
+    const tabla = document.getElementById("sopa");
+
+    letras.forEach((fila, i) => {
+        const tr = document.createElement("tr");
+        fila.forEach((letra, j) => {
+            const td = document.createElement("td");
+            td.textContent = letra;
+            td.onclick = () => seleccionar(td, letra);
+            tr.appendChild(td);
+        });
+        tabla.appendChild(tr);
+    });
+
+    function seleccionar(td, letra) {
+        td.classList.toggle("selected");
+        if (seleccionadas.includes(letra)) {
+            seleccionadas.splice(seleccionadas.indexOf(letra), 1);
+        } else {
+            seleccionadas.push(letra);
+        }
+    }
+
+    function verificar() {
+        let texto = seleccionadas.join("");
+        let encontradas = 0;
+
+        palabras.forEach(palabra => {
+            if (texto.includes(palabra)) {
+                encontradas++;
+            }
+        });
+
+        if (encontradas === palabras.length) {
+            alert("¡Felicidades! Encontraste todas las palabras");
+        } else {
+            alert("Aún faltan palabras. Sigue jugando");
+        }
+    }
+
+</script>
+
+ <a href="/menu" class="volver">Regresar</a>
+
+</body>
+</html>

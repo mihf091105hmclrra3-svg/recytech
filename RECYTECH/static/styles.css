@@ -1,0 +1,189 @@
+/* RESET Y FUENTE */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Times New Roman', sans-serif;
+}
+/* VIDEO DE FONDO */
+#video-fondo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+/* PANTALLA BIENVENIDA*/
+.bienvenida {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 3px 3px 12px rgba(0,0,0,0.7);
+}
+.bienvenida h1 {
+    font-size: 3em;
+    margin-bottom: 40px;
+}
+.bienvenida .button {
+    background-color: #00b894;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+.bienvenida .button:hover {
+    background-color: #019874;
+}
+/* CONTENEDOR PRINCIPAL (MENU)*/
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    gap: 40px;
+}
+/* LOGO */
+.logo {
+    width: 300px;
+}
+/* BOTONES DEL MENU */
+.menu .button {
+    display: block;
+    width: 220px;
+    padding: 10px;
+    margin: 8px auto;
+    background-color: #00b894;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+.menu .button:hover {
+    background-color: #019874;
+}
+/* BOTON VOLVER */
+.volver {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    width: 120px;
+    background-color: #00b894;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*ESPACIO TEXTO PAGINA*/
+.contenido {
+    padding: 20px;
+}
+   
+/* COLORES PAGINAS */
+.verde1 { background: #d1f2a5; }
+.verde2 { background: #b4e77c; }
+.verde3 { background: #96db53; }
+.verde4 { background: #78cf2a; }
+.verde5 { background: #5fb81e; }
+.verde6 { background: #4a9f14; }
+.verde7 { background: #3c8611; }
+.verde8 { background: #2e6c0d; }
+.verdeFormulario { background: #c8f465; }
+
+/* CONTENEDOR GENERAL PAGINA */
+.pagina {
+    padding-top: 40px;
+    padding-bottom: 80px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+/* TITULOS DE CADA PAGINA */
+.pagina h1 {
+    font-size: 2.6em;
+    margin-bottom: 25px;
+    color: #1b3d0f;
+}
+/* RECUADRO INFORMACION */
+.caja-info {
+    background: rgba(255, 255, 255, 0.88);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+/* IMAGENES ESTILO TT */
+.images {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    min-width: 600px;
+    max-width: 900px;
+    width: calc(100% - 100px);
+    height: 300px;
+    margin: 25px auto;
+    border-radius: 10px;
+    gap: 10px;
+}
+/* CADA IMAGEN */
+.images img {
+    width: 100%;
+    object-fit: cover;
+}
+.caja-info {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 85%;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+.images {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.images img {
+    width: 50%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+/* BOTONES VOLVER AL INICIO*/
+.boton-inicio {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 12px 0;
+    background: #0b7a3c;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: 0.2s;
+}
+
+.boton-inicio:hover {
+    background: #065827;
+    transform: scale(1.05);
+}
+p {
+    font-size: 1.5em;
+}

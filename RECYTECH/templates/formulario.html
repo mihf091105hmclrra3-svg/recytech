@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <style>
+        body { 
+        background-color: #00ff008b; 
+        font-family: Monotype Corsiva;
+        padding: 20px;
+        text-align: center; 
+        }
+
+        .container { 
+        background: rgba(61, 170, 67, 0.788); 
+        padding: 20px; 
+        border-radius: 10px; 
+        width: 900px; 
+        margin: auto; 
+        }
+
+        h2 { 
+        color: black; 
+        font-size: 3em; 
+        margin-top: 30px;
+        }
+
+        form {
+        margin-bottom: 25px; 
+        font-size: 1.5em;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;     
+        }
+
+        input, textarea { 
+            padding: 8px; 
+            width: 400px;            
+            margin: 10px 0; 
+            font-size: 1.2em;
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+
+        th, td { 
+            border: 2px solid #19a54a; 
+            padding: 8px; 
+            font-size: 1.5em; 
+        }
+
+        th { background: #38dd66b3; }
+
+        a { 
+            color: black; 
+            font-size: 1.8em; 
+            text-decoration: none;
+        }
+
+        .btn-auth { 
+            background: #faf9f9ad;
+            color: rgb(18, 18, 18);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+            display: inline-block;
+            font-size: 1.5em;
+        }
+
+        .btn-add { 
+            background: rgba(239, 235, 237, 0.475); 
+            color: rgb(23, 22, 22);
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+
+        .btn-delete { 
+            background: red; 
+            color: white; 
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Agregar residuo</h2>
+<form method="POST">
+    <input type="text" name="tipo" placeholder="Tipo (Plástico, vidrio...)" required>
+
+    <textarea name="descripcion" placeholder="Descripción" required></textarea>
+
+    <input type="text" name="color" placeholder="Color del contenedor" required>
+
+    <input type="text" name="ejemplos" placeholder="Ejemplos (Botellas, bolsas...)">
+
+    <button type="submit" class="btn-add" name="accion" value="agregar">
+        Agregar
+    </button>
+</form>
+
+
+    <h2>Consultar por ID</h2>
+    <form method="POST">
+        <input type="number" name="id_consulta" placeholder="Ingresa ID a buscar">
+        <button type="submit" class="btn-add" name="accion" value="consultar">
+            Consultar
+        </button>
+    </form>
+
+
+    {% if residuo_consultado %}
+    <h3>Resultado:</h3>
+    <p><b>Tipo:</b> {{ residuo_consultado.tipo }}</p>
+    <p><b>Descripción:</b> {{ residuo_consultado.descripcion }}</p>
+    <p><b>Color:</b> {{ residuo_consultado.color }}</p>
+    <p><b>Ejemplos:</b> {{ residuo_consultado.ejemplos }}</p>
+    {% endif %}
+
+    {% if mensaje %}
+    <p style="color:red; font-size:1.5em;">{{ mensaje }}</p>
+    {% endif %}
+
+    <h2>Lista de residuos registrados</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Color</th>
+            <th>Ejemplos</th>
+            <th>Eliminar</th>
+        </tr>
+        {% for r in residuos %}
+        <tr>
+            <td>{{ r.id }}</td>
+            <td>{{ r.tipo }}</td>
+            <td>{{ r.color }}</td>
+            <td>{{ r.ejemplos }}</td>
+            <td>
+                <form action="/eliminar" method="POST">
+                    <input type="hidden" name="id" value="{{ r.id }}">
+                    <button class="btn-delete">X</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br><br>
+    <div>
+    <a href="/consultas">Ir a consultas avanzadas</a>
+
+</div>
+
+</body>
+</html>
